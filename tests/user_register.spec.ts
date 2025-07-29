@@ -1,7 +1,11 @@
 import { test, expect } from '@playwright/test';
 
+const baseURL = process.env.BASE_URL!;
+const testEmail = process.env.TEST_EMAIL!;
+const testPassword = process.env.TEST_PASSWORD!;
+
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://www.automationexercise.com/');
+  await page.goto(baseURL);
   await expect(page).toHaveURL('https://www.automationexercise.com/');
   await expect(page).toHaveTitle('Automation Exercise');
 });
@@ -17,14 +21,14 @@ test('register a new user', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'New User Signup!' })).toBeVisible();
 
   await page.locator('[data-qa="signup-name"]').fill('Test Code');
-  await page.locator('[data-qa="signup-email"]').fill('testcode@code.com');
+  await page.locator('[data-qa="signup-email"]').fill(testEmail);
   await page.locator('[data-qa="signup-button"]').click();
 
   await expect(page.getByRole('heading', { name: 'Enter Account Information' })).toBeVisible();
 
   await page.locator('[id="id_gender1"]').click();
   await expect(page.locator('[id="id_gender1"]')).toBeChecked();
-  await page.locator('[data-qa="password"]').fill('Itobuz#1234');
+  await page.locator('[data-qa="password"]').fill(testPassword);
   await page.locator('[data-qa="days"]').selectOption('9');
   await page.locator('[data-qa="months"]').selectOption('October');
   await page.locator('[data-qa="years"]').selectOption('1994');
