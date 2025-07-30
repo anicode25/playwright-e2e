@@ -13,6 +13,8 @@ setps:
 • Generate HTML report: npx playwright show-report (Generate report in playwright-report folder)
 • ENV file is here for sentitive data
 • For cross-browser testing, change setting from playwright config file
-• Github Action are ready for CICD purposes
+• Github Action configured for CICD purposes
+• Jenkins is configured for CI/CD purposes (Change the settings in Jenkins if you want to run it periodically)
+
 
 
