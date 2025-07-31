@@ -23,5 +23,5 @@
 
 🧪 CI/CD - Jenkins: Jenkins pipeline configured.
 
-Note: You can adjust Jenkins settings to schedule periodic test runs.
+Note: You can adjust Jenkins settings to schedule periodic test runs...
 
