@@ -4,7 +4,7 @@
 - **Node.js** (>= 16)
 - **npm**
 
-📦 Project Setup
+## 📦 Project Setup
 
 • npm i
 • npm init playwright@latest
