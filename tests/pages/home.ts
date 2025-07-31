@@ -12,5 +12,9 @@ export class HomePage {
     await expect(
       page.getByRole("heading", { name: "New User Signup!" })
     ).toBeVisible();
+
+    await expect(
+      page.getByRole("heading", { name: "Login to your account" })
+    ).toBeVisible();
   }
 }

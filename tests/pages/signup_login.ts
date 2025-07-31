@@ -42,4 +42,29 @@ export class SignUp_Login_Page {
     ).toBeVisible();
     await page.locator('[data-qa="continue-button"]').click();
   }
+
+  async logIn(
+    page: Page,
+    userName: string,
+    userEmail: string,
+    userPassword: string
+  ) {
+    await page.locator('[data-qa="login-email"]').fill(userEmail);
+    await page.locator('[data-qa="login-password"]').fill(userPassword);
+    await page.locator('[data-qa="login-button"]').click();
+    await page.waitForTimeout(2000);
+    const expectedText = `Logged in as ${userName}`;
+    await expect(page.getByText("Logged in as")).toHaveText(expectedText);
+  }
+
+  async logOut(page: Page) {
+    await page.locator('//a[@href="/logout"]').click();
+    await expect(
+      page.getByRole("heading", { name: "New User Signup!" })
+    ).toBeVisible();
+
+    await expect(
+      page.getByRole("heading", { name: "Login to your account" })
+    ).toBeVisible();
+  }
 }
