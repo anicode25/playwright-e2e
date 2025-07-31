@@ -5,12 +5,13 @@ Prerequisites:
 1. Node.js (>= 16)
 2. npm
 
-setps: 
+Covered area in this project:
 
 • npm i
 • npm init playwright@latest
 • Run all test: npx playwright test
 • Generate HTML report: npx playwright show-report (Generate report in playwright-report folder)
+• Page object created for end to end test
 • ENV file is here for sentitive data
 • For cross-browser testing, change setting from playwright config file
 • Github Action configured for CICD purposes
