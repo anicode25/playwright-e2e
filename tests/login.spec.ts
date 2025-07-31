@@ -21,3 +21,8 @@ test("Login User with correct email and password", async ({ page }) => {
   await signupandlogin.logIn(page, userName, userEmail, userPassword);
   await signupandlogin.logOut(page);
 });
+
+test("Login User with incorrect email and password", async ({ page }) => {
+  await home.navigateToSignupPage(page);
+  await signupandlogin.invalidlogIn(page, 'sdf@gmail.com', 'Aniket@1234');
+});

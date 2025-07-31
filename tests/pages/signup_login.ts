@@ -57,6 +57,16 @@ export class SignUp_Login_Page {
     await expect(page.getByText("Logged in as")).toHaveText(expectedText);
   }
 
+  async invalidlogIn(page: Page, userEmail: string, userPassword: string) {
+    await page.locator('[data-qa="login-email"]').fill(userEmail);
+    await page.locator('[data-qa="login-password"]').fill(userPassword);
+    await page.locator('[data-qa="login-button"]').click();
+    await page.waitForTimeout(2000);
+    await expect(
+      page.getByText("Your email or password is incorrect!")
+    ).toBeVisible();
+  }
+
   async logOut(page: Page) {
     await page.locator('//a[@href="/logout"]').click();
     await expect(
