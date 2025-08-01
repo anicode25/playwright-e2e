@@ -17,4 +17,11 @@ export class HomePage {
       page.getByRole("heading", { name: "Login to your account" })
     ).toBeVisible();
   }
+
+  async navigateToProductsPage(page: Page) {
+    await page.locator('//a[@href="/products"]').click();
+    await expect(
+      page.getByRole("heading", { name: "All Products" })
+    ).toBeVisible();
+  }
 }
