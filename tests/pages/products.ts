@@ -56,4 +56,32 @@ export class ProductsPage {
     ).toBeVisible();
     await expect(productInfo.locator("p", { hasText: "Brand:" })).toBeVisible();
   }
+
+  async addProductToCart(page: Page, productNumber: number) {
+    const productIndex = productNumber - 1;
+
+    const productCard = page
+      .locator(
+        ".features_items .col-sm-4 .product-image-wrapper .single-products"
+      )
+      .nth(productIndex);
+    await expect(productCard).toBeVisible();
+    await productCard.scrollIntoViewIfNeeded();
+    await productCard.hover();
+    await page.waitForTimeout(500);
+    const addToCartButton = productCard.locator(
+      '.overlay-content a:has-text("Add to cart")'
+    );
+    await expect(addToCartButton).toBeVisible();
+    await addToCartButton.click();
+  }
+
+  async continueShoppingFromPopup(page: Page) {
+    await page.locator('[data-dismiss="modal"]').click();
+  }
+
+  async viewCartFromPopup(page: Page) {
+    const viewCartButton = page.locator('[href="/view_cart"]').nth(1);
+    await viewCartButton.click();
+  }
 }
