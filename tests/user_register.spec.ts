@@ -24,7 +24,7 @@ test.afterEach(async ({ page }, testInfo) => {
   }
 });
 
-test("register a new user", async ({ page }) => {
+test("Register a new user", async ({ page }) => {
   await home.navigateToSignupPage(page);
   await signupandlogin.signUp(page, signUpName, signUpEmail);
   await signupandlogin.completeAccountInfo(page, signUpPassword);
