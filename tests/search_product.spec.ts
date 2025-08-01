@@ -1,9 +1,11 @@
 import { test, expect } from "@playwright/test";
 import { HomePage } from "../tests/pages/home";
+import { ProductsPage } from "../tests/pages/products";
 
 const baseURL = process.env.BASE_URL!;
 
 const home = new HomePage();
+const products = new ProductsPage();
 
 test.beforeEach(async ({ page }) => {
   await home.goToHomePage(page, baseURL);
@@ -21,29 +23,12 @@ test.afterEach(async ({ page }, testInfo) => {
 test("Search products", async ({ page }) => {
   await home.navigateToProductsPage(page);
   await page.waitForTimeout(3000);
-  const productList = await page.locator(".features_items .col-sm-4");
-  await expect(productList.first()).toBeVisible();
-  const count = await productList.count();
-  expect(count).toBeGreaterThan(0);
-
-  // verify product name here
+  await products.verifyProductsList(page);
+  await products.verifyFistProductName(page);
   const productName = await page
     .locator(".productinfo p")
     .first()
     .textContent();
-  console.log(`Product Name: ${productName}`);
-
-  await page.getByPlaceholder("Search Product").fill(productName!);
-  await page.locator("[id=submit_search]").click();
-  await page.waitForTimeout(3000);
-
-  // Check that exactly one product appears
-  const productResults = page.locator(".productinfo p");
-  await expect(productResults).toHaveCount(1);
-
-  // Verify the product name matches
-  const searchedProductName = (
-    await productResults.first().textContent()
-  )?.trim();
-  expect(searchedProductName).toBe(productName);
+  await products.searchProduct(page, productName!);
+  await products.verifySingleSearchResultMatches(page, productName!);
 });
