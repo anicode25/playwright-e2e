@@ -3,7 +3,7 @@ import { Page, expect } from "@playwright/test";
 export class HomePage {
   async goToHomePage(page: Page, baseURL: string) {
     await page.goto(baseURL, {
-      waitUntil: "domcontentloaded",
+      waitUntil: "load",
       timeout: 60000, // 1 minute
     });
     await expect(page).toHaveURL("https://www.automationexercise.com/");
@@ -11,7 +11,7 @@ export class HomePage {
   }
 
   async navigateToSignupPage(page: Page) {
-    await page.locator('//a[@href="/login"]').click();
+    await page.locator('//a[@href="/login"]').nth(0).click();
     await expect(
       page.getByRole("heading", { name: "New User Signup!" })
     ).toBeVisible();
@@ -26,5 +26,10 @@ export class HomePage {
     await expect(
       page.getByRole("heading", { name: "All Products" })
     ).toBeVisible();
+  }
+
+  async navigateToCartPage(page: Page) {
+    await page.locator('[href="/view_cart"]').nth(0).click();
+    await expect(page.getByText("Shopping Cart")).toBeVisible();
   }
 }
