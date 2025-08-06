@@ -10,7 +10,6 @@ export class ProductsPage {
   async searchProduct(page: Page, productName: string) {
     await page.getByPlaceholder("Search Product").fill(productName!);
     await page.locator("[id=submit_search]").click();
-    await page.waitForTimeout(3000);
   }
   async verifySingleSearchResultMatches(page: Page, productName: string) {
     // Check that exactly one product appears
