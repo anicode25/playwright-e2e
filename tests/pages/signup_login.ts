@@ -52,7 +52,6 @@ export class SignUp_Login_Page {
     await page.locator('[data-qa="login-email"]').fill(userEmail);
     await page.locator('[data-qa="login-password"]').fill(userPassword);
     await page.locator('[data-qa="login-button"]').click();
-    await page.waitForTimeout(2000);
     const expectedText = `Logged in as ${userName}`;
     await expect(page.getByText("Logged in as")).toHaveText(expectedText);
   }
@@ -71,10 +70,10 @@ export class SignUp_Login_Page {
     await page.locator('//a[@href="/logout"]').click();
     await expect(
       page.getByRole("heading", { name: "New User Signup!" })
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 10000 });
 
     await expect(
       page.getByRole("heading", { name: "Login to your account" })
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 10000 });
   }
 }

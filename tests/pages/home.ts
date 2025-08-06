@@ -2,7 +2,10 @@ import { Page, expect } from "@playwright/test";
 
 export class HomePage {
   async goToHomePage(page: Page, baseURL: string) {
-    await page.goto(baseURL);
+    await page.goto(baseURL, {
+      waitUntil: "domcontentloaded",
+      timeout: 60000, // 1 minute
+    });
     await expect(page).toHaveURL("https://www.automationexercise.com/");
     await expect(page).toHaveTitle("Automation Exercise");
   }

@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 
 test("Login User with correct email and password", async ({ page }) => {
   await home.navigateToSignupPage(page);
-  await console.log(userPassword);
+  //await console.log(userPassword);
   await signupandlogin.logIn(page, userName, userEmail, userPassword);
   await signupandlogin.logOut(page);
 });

@@ -28,7 +28,7 @@ export class ProductsPage {
       .locator(".productinfo p")
       .first()
       .textContent();
-    console.log(`Product Name: ${productName}`);
+    // console.log(`Product Name: ${productName}`);
   }
 
   async goToProductDetailFromList(page: Page) {
